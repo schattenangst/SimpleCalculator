@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿
 namespace Calculadora
 {
-    public partial class Form1 : Form
+    using Common.Contracts;
+    using Common.Entities;
+    using Service.Implementations;
+    using System;
+    using System.Windows.Forms;
+
+    public partial class Calculadora : Form
     {
         private bool isMinus;
         private decimal firstValue = 0;
@@ -18,9 +15,9 @@ namespace Calculadora
         private decimal? memory = null;
         private string typeOperation = string.Empty;
 
-        Operations operation = new Operations();
+        IOperations operation = new Operations();
 
-        public Form1()
+        public Calculadora()
         {
             InitializeComponent();
         }
@@ -106,6 +103,8 @@ namespace Calculadora
 
         private void Clean_Click(object sender, EventArgs e)
         {
+            firstValue = 0;
+            secondValue = 0;
             TextValue.Text = string.Empty;
             TextShow.Text = string.Empty;
         }
@@ -175,6 +174,11 @@ namespace Calculadora
             }
 
             return value;
+        }
+
+        private void Calculadora_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

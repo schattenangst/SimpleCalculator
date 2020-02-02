@@ -1,6 +1,6 @@
 ﻿namespace Calculadora
 {
-    partial class Form1
+    partial class Calculadora
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -209,8 +209,9 @@
             this.MemoryLabel.Text = "M";
             this.MemoryLabel.Visible = false;
             // 
-            // Form1
+            // Calculadora
             // 
+            this.AcceptButton = this.Equal;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 253);
@@ -228,8 +229,9 @@
             this.Controls.Add(this.Substraction);
             this.Controls.Add(this.Sum);
             this.Controls.Add(this.TextValue);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Calculadora";
+            this.Text = "Calculadora";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Calculadora_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

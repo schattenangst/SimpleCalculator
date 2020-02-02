@@ -1,6 +1,10 @@
-﻿namespace Calculadora
+﻿
+namespace Calculadora.Service.Implementations
 {
-    public class Operations
+    using Common.Contracts;
+    using Common.Entities;
+
+    public class Operations : IOperations
     {
         /// <summary>
         /// Realiza una operación basica 
