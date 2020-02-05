@@ -5,6 +5,7 @@ namespace Calculadora
     using Common.Entities;
     using Service.Implementations;
     using System;
+    using System.Text.RegularExpressions;
     using System.Windows.Forms;
 
     public partial class Calculadora : Form
@@ -168,9 +169,9 @@ namespace Calculadora
         {
             decimal value = 0;
 
-            if (!string.IsNullOrEmpty(numberText))
+            if (!string.IsNullOrEmpty(numberText) && !decimal.TryParse(numberText, out value))
             {
-                value = decimal.Parse(TextValue.Text);
+                TextValue.Text = "Sintaxis Error";
             }
 
             return value;
@@ -179,6 +180,24 @@ namespace Calculadora
         private void Calculadora_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void TextValue_TextChanged(object sender, EventArgs e)
+        {
+            GetValueParseText(((TextBox)sender).Text);
+        }
+
+        private void Number_Click(object sender, EventArgs e)
+        {
+            string value = string.Empty;
+
+            value = $"{TextValue.Text}{(sender as Button).Text}";
+            Regex exp = new Regex(@"^[0-9]+([.])?([0-9]+)?$");
+
+            if (exp.IsMatch(value))
+            {
+                TextValue.Text = value;
+            }
         }
     }
 }
